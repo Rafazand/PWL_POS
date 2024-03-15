@@ -8,13 +8,18 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
-    $data=[
-        'nama' => 'Pelanggan', 
-    ];
-    UserModel::where('username','customer-1')->update($data);
+    public function index()
+    {
+        $data=[
+            'level_id' => 2,
+            'username' => 'manager_tiga',
+            'nama' => 'Manager 3',
+            'password' => Hash::make('12345')
+        ];
+        UserModel::create($data);
 
-    $user = UserModel::all();//ambil semua data dari tael m_user
-    return view('user', ['data'=>$user]);
-}
+        // $user = UserModel::find(1);
+        $user = UserModel::all();
+        return view('user', ['data'=>$user]);
+    }
 }
