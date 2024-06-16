@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\POSController;
+
 use App\Http\Controllers\UserController;
 
 
@@ -17,9 +20,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/level',[LevelController::class,'index']);
 Route::get('/kategori',[KategoriController::class,'index']);
@@ -31,7 +34,11 @@ Route::get('/user/tambah_simpan',[UserController::class,'tambah_simpan'])->name(
 Route::get('/kategori',[KategoriController::class,'index']);
 Route::get('/kategori/update/{id}',[KategoriController::class,'update'])->name('/kategori/update');
 Route::get('/kategori/delete/{id}',[KategoriController::class,'delete'])->name('/kategori/delete');
-
+Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+Route::post('/kategori', [KategoriController::class, 'store']);
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('m_user', POSController::class);
+
+Route::get('/', [WelcomeController::class, 'index']);
