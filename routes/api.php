@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\BarangController;
 use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\SalesController;
+
 
 
 
@@ -57,3 +59,6 @@ Route::middleware('auth:api')->post('kategori', [KategoriController::class, 'sto
 Route::middleware('auth:api')->get('kategori/{kategori}', [KategoriController::class, 'show']);
 Route::middleware('auth:api')->put('kategori/{kategori}', [KategoriController::class, 'update']);
 Route::middleware('auth:api')->delete('kategori/{kategori}', [KategoriController::class, 'destroy']);
+
+Route::middleware('auth:api')->get('sales', [SalesController::class, 'index']);
+Route::middleware('auth:api')->post('sales', [SalesController::class, 'store']);
